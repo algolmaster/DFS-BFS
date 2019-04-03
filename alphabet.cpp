@@ -7,14 +7,15 @@ int R; //가로
 int C; //세로
 
 char *board; //보드판
-void dfs(int y, int x,int max_step) {
+int max_step;
+void dfs(int y, int x) {
 	int step = 1;
 
 	int dy[] = { -1,1,0,0 };
 	int dx[] = { 0,0,-1,1 };
-	bool *visited = new bool[26];
+	bool *visited = new bool[26];//alphabet 배열
 
-	int alpha = board[x*R+y]-'A';
+	int alpha = board[x*R+y]-'A'; //alphabet
 	visited[alpha] = true;
 
 	for (int i = 0; i < 4; i++) {
@@ -26,7 +27,7 @@ void dfs(int y, int x,int max_step) {
 		if (visited[nextAlpha])continue;
 		
 		max_step = max(max_step, ++step);
-		dfs(yy, xx,max_step);
+		dfs(yy, xx);
 	}
 	step--;
 	visited[alpha] = false;
@@ -40,5 +41,5 @@ int main() {
 	for (int i = 0; i < R*C; i++)
 		cin >> board[i];
 
-	dfs(0, 0, 0);
+	dfs(0, 0);
 }
