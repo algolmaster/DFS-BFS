@@ -3,17 +3,18 @@
 #include <algorithm>
 using namespace std;
 
-int R; //°¡·Î
-int C; //¼¼·Î
+int R; //ê°€ë¡œ
+int C; //ì„¸ë¡œ
 
-char *board; //º¸µåÆÇ
+char *board; //ë³´ë“œíŒ
 int max_step;
+bool *visited = new bool[26];//alphabet ë°°ì—´
+
 void dfs(int y, int x) {
 	int step = 1;
 
 	int dy[] = { -1,1,0,0 };
 	int dx[] = { 0,0,-1,1 };
-	bool *visited = new bool[26];//alphabet ¹è¿­
 
 	int alpha = board[x*R+y]-'A'; //alphabet
 	visited[alpha] = true;
@@ -36,7 +37,7 @@ int main() {
 	cin >> R >> C;
 
 	board = new char[R*C-1];
-	if (!board) cout << "¸Þ¸ð¸®¸¦ ÇÒ´çÇÒ ¼ö ¾ø½À´Ï´Ù.";
+	if (!board) cout << "ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";
 
 	for (int i = 0; i < R*C; i++)
 		cin >> board[i];
